@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPrimary2">#3F51B5</color>
+    <color name="colorPrimaryDark2">#303F9F</color>
+    <color name="colorAccent2">#FFFFFF</color>
+
+    <!-- 1st Gradient color -->
+    <color name="colorPurple_A400">#b5d500f9</color>
+    <color name="colorPurple_900">#c94a148c</color>
+    <!-- ./ 1st Gradient color -->
+
+    <!-- 2nd Gradient color -->
+    <color name="colorAmber_A400">#FFC400</color>
+    <color name="colorAmber_900">#FF6F00</color>
+    <!-- ./ 2nd Gradient color -->
+
+    <!-- 3rd Gradient color -->
+    <color name="colorGreen_A400">#00E676</color>
+    <color name="colorGreen_900">#1B5E20</color>
+    <!-- ./ 3rd Gradient color -->
+
+    <!-- 4th Gradient color -->
+    <color name="colorRed_A400">#7fff254f</color>
+    <color name="colorRed_900">#98b71c1c</color>
+    <!-- ./ 4th Gradient color -->
+
+
+    <!-- 4th Gradient color -->
+    <color name="colorblue1">#4DD0E1</color>
+    <color name="colorblue22">#03A9F4</color>
+    <color name="colorblue2">#03A9F4</color>
+    <color name="colorblue3">#006064</color>
+    <!-- ./ 4th Gradient color -->
+
+    <color name="black_alpha_40">#66000000</color>
+    <color name="black_alpha_00">#00000000</color>
+
+
+
+
+</resources>
