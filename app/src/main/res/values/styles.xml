@@ -9,4 +9,8 @@
     </style>
     <!-- Base application theme. -->
 
+    <style name="MyButtonStyle" parent="Base.Widget.AppCompat.Button">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@color/black_alpha_80</item>
+    </style>
 </resources>

@@ -17,16 +17,22 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
     List<SavedCity> savedCityList;
     Picasso picasso;
 
-//    @Inject
+    @Inject
     public ScreenSlidePagerAdapter(FragmentManager fm, List<SavedCity> savedCityList, Picasso picasso) {
         super(fm);
         this.savedCityList = savedCityList;
         this.picasso = picasso;
     }
 
+    void setList(List<SavedCity> savedCityList) {
+        this.savedCityList = savedCityList;
+
+    }
+
     @Override
     public TodayFragment getItem(int position) {
-        return TodayFragment.newInstance(savedCityList.get(position), picasso);
+        TodayFragment todayFragment = TodayFragment.newInstance(savedCityList.get(position), picasso) ;
+        return todayFragment ;
     }
 
     @Override

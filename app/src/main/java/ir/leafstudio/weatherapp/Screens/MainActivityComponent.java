@@ -11,7 +11,6 @@ import ir.leafstudio.weatherapp.retrofit.ApiService;
 public interface MainActivityComponent {
 
 //    void injectFragmentManager(MainActivity mainActivity);
-    Presenter getPresenter();
 
     ApiService getApiService();
 

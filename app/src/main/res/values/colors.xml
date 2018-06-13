@@ -37,7 +37,11 @@
     <!-- ./ 4th Gradient color -->
 
     <color name="black_alpha_40">#66000000</color>
+    <color name="black_alpha_80">#318f8b8b</color>
+    <color name="black">#000000</color>
     <color name="black_alpha_00">#00000000</color>
+
+    <color name="buttonTrasnp">#2c00ffe5</color>
 
 
 

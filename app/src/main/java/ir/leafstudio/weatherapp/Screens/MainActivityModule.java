@@ -7,10 +7,11 @@ import com.squareup.picasso.Picasso;
 
 import dagger.Module;
 import dagger.Provides;
+import ir.leafstudio.weatherapp.MySharedPreferences;
 import ir.leafstudio.weatherapp.Presenter;
 import ir.leafstudio.weatherapp.retrofit.ApiService;
 
-@Module
+@Module()
 public class MainActivityModule {
 
     private MainActivity mainActivity;
@@ -19,11 +20,6 @@ public class MainActivityModule {
         this.mainActivity = mainActivity;
     }
 
-    @Provides
-    @MainActivityScope
-    Presenter getPresenter(ApiService apiService) {
-        return new Presenter(apiService);
-    }
 
     @Provides
     @MainActivityScope

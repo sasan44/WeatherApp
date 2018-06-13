@@ -129,7 +129,7 @@ public class TodayFragment extends Fragment implements fragmentUpdater {
         today_textViewSunset.setText(openWeather.getSys().getSunset().toString());
         today_textViewDt.setText("" + openWeather.getDt());
 
-        today_textViewWindDeg.setText("WindDeg:" + openWeather.getWind().getDeg().toString());
+        //today_textViewWindDeg.setText("WindDeg:" + openWeather.getWind().getDeg().toString());
         today_textViewWindSpeed.setText("WindSpeed:" + openWeather.getWind().getSpeed().toString());
         picasso.get()
                 .load("http://openweathermap.org/img/w/" + openWeather.getWeather().get(0).getIcon() + ".png")//10d.png

@@ -9,4 +9,6 @@ public interface UIListener {
    void updateUIcurrentWeather(OpenWeather body,SavedCity city );//TODO data
    void updateUIForcastWeather(Forecast body,SavedCity city );//TODO data
    void savedCityUpdated();
+
+    void listOfcitiesUpdated();
 }

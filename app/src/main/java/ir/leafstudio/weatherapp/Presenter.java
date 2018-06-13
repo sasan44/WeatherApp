@@ -14,10 +14,12 @@ public class Presenter implements ServerLoadListener {
     UIListener uiListener;
 
     ApiService apiService;
-    SavedSettings savedSettings = new SavedSettings();
-    public Presenter(ApiService apiService) {
-        Timber.d("Presenter");
+    private SavedSettings savedSettings;
+
+    public Presenter(ApiService apiService, MySharedPreferences sharedPreferences) {
         this.apiService = apiService;
+        setSavedSettings(new SavedSettings(sharedPreferences));
+        Timber.d("Presenter " + sharedPreferences.getDataList());
 
     }
 
@@ -53,15 +55,42 @@ public class Presenter implements ServerLoadListener {
     }
 
     public List<SavedCity> getSavedCityList() {
-        return savedSettings.getListOfcities();
+        return getSavedSettings().getListOfcities();
     }
 
     public void load() {
         for (SavedCity city : getSavedCityList()) {
-            CallServer callServer = new CallServer(this,apiService, city);
+            CallServer callServer = new CallServer(this, apiService, city);
             callServer.setListener(this);
         }
         uiListener.savedCityUpdated();
 
+    }
+
+    public SavedSettings getSavedSettings() {
+        return savedSettings;
+    }
+
+    public void setSavedSettings(SavedSettings savedSettings) {
+        this.savedSettings = savedSettings;
+    }
+
+    public void listOfcitiesUpdated() {
+        uiListener.listOfcitiesUpdated();
+        load();
+    }
+
+    public void deleteFromListofCities(SavedCity savedCity) {
+        savedSettings.removeCity(savedCity);
+    }
+
+    public void addToListofCities(SavedCity savedCity) {
+        savedSettings.addCity(savedCity);
+
+    }
+
+    public void deleteFromListofCities(int savedCity) {
+        savedSettings.removeCity(savedCity);
+        uiListener.listOfcitiesUpdated();
     }
 }
