@@ -16,14 +16,13 @@ public class CallServer implements ApiService {
     //TODO add Timber & think if appid
     ServerLoadListener listener;
     String appid = "856af595113e0bffc7a19161e7b6ba11";
-    String TAG = "CallServer";
-    double lat = 35.6892, lon = 51.3890;
     SavedCity city;
-    ApiService apiService ;
-    public CallServer(ServerLoadListener serverLoadListener,ApiService apiService ,SavedCity savedCity) {
+    ApiService apiService;
+
+    public CallServer(ServerLoadListener serverLoadListener, ApiService apiService, SavedCity savedCity) {
         this.listener = serverLoadListener;
         this.city = savedCity;
-        this.apiService = apiService ;
+        this.apiService = apiService;
         getCurrentWeather(appid, city.getLat(), city.getLon());
         getFiveDayForecast(appid, city.getLat(), city.getLon());
         //   getFiveDayForecast(appid, lat, lon);
@@ -39,7 +38,7 @@ public class CallServer implements ApiService {
         call.enqueue(new Callback<OpenWeather>() {
             @Override
             public void onResponse(Call<OpenWeather> call, Response<OpenWeather> response) {
-              //  Timber.d("onResponse" + new Gson().toJson(response.body()));
+                //  Timber.d("onResponse" + new Gson().toJson(response.body()));
                 if (response.body() != null)
                     listener.onCurrentWeatherLoaded(response.body(), city);
                 else
@@ -66,7 +65,7 @@ public class CallServer implements ApiService {
         call.enqueue(new Callback<Forecast>() {
             @Override
             public void onResponse(Call<Forecast> call, Response<Forecast> response) {
-           //     Timber.d("onResponse" + new Gson().toJson(response.body()));
+                //     Timber.d("onResponse" + new Gson().toJson(response.body()));
                 if (response.body() != null)
                     listener.onFiveDayForecastLoaded(response.body(), city);
                 else

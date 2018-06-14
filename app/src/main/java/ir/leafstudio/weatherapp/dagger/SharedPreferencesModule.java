@@ -10,22 +10,31 @@ import javax.inject.Inject;
 import dagger.Module;
 import dagger.Provides;
 import ir.leafstudio.weatherapp.MySharedPreferences;
+import ir.leafstudio.weatherapp.SavedSettings;
 import ir.leafstudio.weatherapp.dagger.ContextModule;
 import ir.leafstudio.weatherapp.dagger.WeatherApplicationScope;
 
 
-@Module(includes = {ContextModule.class , WeatherModule.class})
+@Module(includes = {ContextModule.class, WeatherModule.class})
 public class SharedPreferencesModule {
 
     @Provides
     @WeatherApplicationScope
-    MySharedPreferences provideMySharedPreferences(SharedPreferences sharedPreferences , Gson gson ) {
-        return new MySharedPreferences(sharedPreferences , gson);
+    SavedSettings provideSavedSettings(MySharedPreferences mysharedPreferences) {
+        return new SavedSettings(mysharedPreferences);
     }
+
+
     @Provides
     @WeatherApplicationScope
-    SharedPreferences provideSharedPreferences(Context context ) {
-        SharedPreferences sharedPreferences =  context.getSharedPreferences("PrefName", Context.MODE_PRIVATE) ;
+    MySharedPreferences provideMySharedPreferences(SharedPreferences sharedPreferences, Gson gson) {
+        return new MySharedPreferences(sharedPreferences, gson);
+    }
+
+    @Provides
+    @WeatherApplicationScope
+    SharedPreferences provideSharedPreferences(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("PrefName", Context.MODE_PRIVATE);
         return sharedPreferences;
     }
 }

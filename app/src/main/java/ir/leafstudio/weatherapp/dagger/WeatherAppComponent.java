@@ -7,6 +7,7 @@ import com.squareup.picasso.Picasso;
 import dagger.Component;
 import ir.leafstudio.weatherapp.MySharedPreferences;
 import ir.leafstudio.weatherapp.Presenter;
+import ir.leafstudio.weatherapp.SavedSettings;
 import ir.leafstudio.weatherapp.retrofit.ApiService;
 
 @WeatherApplicationScope
@@ -21,5 +22,6 @@ public interface WeatherAppComponent {
 
     MySharedPreferences provideMySharedPreferences();
 
+    SavedSettings provideSavedSettings();
 
 }

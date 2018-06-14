@@ -6,19 +6,21 @@
     android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/buttonDelete"
+    <ImageButton
+        android:id="@+id/listView_buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginTop="16dp"
-        android:text="Delete"
+        android:scaleType="centerCrop"
+        android:background="?android:selectableItemBackground"
+        android:src="@drawable/baseline_clear_black_48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewCity"
+        android:id="@+id/listView_textViewCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="48dp"
@@ -36,6 +38,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textViewCity"
+        app:layout_constraintStart_toEndOf="@+id/listView_textViewCity"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

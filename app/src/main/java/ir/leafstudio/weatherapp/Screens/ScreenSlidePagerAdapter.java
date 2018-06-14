@@ -26,7 +26,6 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
     void setList(List<SavedCity> savedCityList) {
         this.savedCityList = savedCityList;
-
     }
 
     @Override

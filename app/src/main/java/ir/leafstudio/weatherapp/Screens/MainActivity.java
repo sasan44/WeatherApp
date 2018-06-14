@@ -1,12 +1,10 @@
 package ir.leafstudio.weatherapp.Screens;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
-import android.support.constraint.ConstraintLayout;
+import android.databinding.DataBindingUtil;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
@@ -22,9 +20,9 @@ import ir.leafstudio.weatherapp.MySharedPreferences;
 import ir.leafstudio.weatherapp.Presenter;
 import ir.leafstudio.weatherapp.R;
 import ir.leafstudio.weatherapp.SavedCity;
-import ir.leafstudio.weatherapp.Screens.settings.SettingsActivity;
-import ir.leafstudio.weatherapp.Screens.settings.SettingsFragment;
+import ir.leafstudio.weatherapp.Screens.settings.ActivitySettings;
 import ir.leafstudio.weatherapp.WeatherApp;
+import ir.leafstudio.weatherapp.databinding.ActivityMainBinding;
 import ir.leafstudio.weatherapp.openweathermodel.Forecast;
 import ir.leafstudio.weatherapp.openweathermodel.OpenWeather;
 import ir.leafstudio.weatherapp.retrofit.ApiService;
@@ -32,14 +30,6 @@ import ir.leafstudio.weatherapp.Screens.todayfragment.TodayFragment;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity implements UIListener {
-    @Inject
-    ScreenSlidePagerAdapter mPagerAdapter;
-    @BindView(R.id.viewpager)
-    ViewPager viewpager;
-    @BindView(R.id.tabLayout)
-    TabLayout tabLayout;
-    @BindView(R.id.settingButton)
-    ImageButton settingButton;
 
 
     @Inject
@@ -50,15 +40,16 @@ public class MainActivity extends BaseActivity implements UIListener {
     Presenter presenter;
     @Inject
     MySharedPreferences mySharedPreferences;
+    @Inject
+    ScreenSlidePagerAdapter mPagerAdapter;
     FragmentManager manager;
-    FragmentTransaction transaction;
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
 
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         this.picasso = WeatherApp.get(this).getPicasso();
 
@@ -73,55 +64,33 @@ public class MainActivity extends BaseActivity implements UIListener {
         this.mPagerAdapter = mainActivityComponent.getScreenSlidePagerAdapter();
 
         manager = getSupportFragmentManager();
-        settingButton.setOnClickListener(new View.OnClickListener() {
+        binding.include2.settingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
-//                myIntent.putExtra("key", value); //Optional parameters
+                Intent myIntent = new Intent(MainActivity.this, ActivitySettings.class);
 
                 MainActivity.this.startActivity(myIntent);
                 overridePendingTransition(R.anim.enter, R.anim.exit);
-
-//                SettingsFragment settingsFragment = SettingsFragment.newInstance();
-//                settingsFragment.setPresenter(presenter);
-//                transaction = manager.beginTransaction();
-//                transaction.add(R.id.viewpagerLayout, settingsFragment, "SettingsFragment");
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//                viewpager.setVisibility(View.INVISIBLE);
-//                tabLayout.setVisibility(View.INVISIBLE);
 
             }
         });
 
         mPagerAdapter.setList(presenter.getSavedCityList());
-//       Presenter presenter  = new Presenter(apiService);
         presenter.setListener(this);
-//        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), presenter.getSavedCityList(), picasso);
-        viewpager.setOffscreenPageLimit(5);         /* limit is a fixed integer*/
-
-        viewpager.setAdapter(mPagerAdapter);
-        tabLayout.setupWithViewPager(viewpager);
-        presenter.load();
+        binding.viewpager.setOffscreenPageLimit(5);       /* limit is a fixed integer*/
+        binding.viewpager.setAdapter(mPagerAdapter);
+        binding.tabLayout.setupWithViewPager(binding.viewpager);
+        presenter.loadFreshData();
 
     }
 
     @Override
     public void onBackPressed() {
-        if (viewpager.getVisibility() == View.INVISIBLE) {
-            viewpager.setVisibility(View.VISIBLE);
-            tabLayout.setVisibility(View.VISIBLE);
-            transaction = manager.beginTransaction();
-            transaction.remove(manager.findFragmentByTag("SettingsFragment")).commit();
-
-        } else if (viewpager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
+        if (binding.viewpager.getCurrentItem() == 0) { // If the user is currently looking at the first step, allow the system to handle the  Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            viewpager.setCurrentItem(viewpager.getCurrentItem() - 1);
+        } else {  // Otherwise, select the previous step.
+            binding.viewpager.setCurrentItem(binding.viewpager.getCurrentItem() - 1);
         }
     }
 
@@ -172,14 +141,8 @@ public class MainActivity extends BaseActivity implements UIListener {
     }
 
     @Override
-    public void savedCityUpdated() {
-        Timber.d("savedCityUpdated");
-        mPagerAdapter.setList(presenter.getSavedCityList());
-        mPagerAdapter.notifyDataSetChanged();
-    }
-
-    @Override
     public void listOfcitiesUpdated() {
+        Timber.d("listOfcitiesUpdated");
         mPagerAdapter.setList(presenter.getSavedCityList());
         mPagerAdapter.notifyDataSetChanged();
     }

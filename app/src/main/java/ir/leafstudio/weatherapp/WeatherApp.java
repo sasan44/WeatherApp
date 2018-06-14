@@ -26,6 +26,7 @@ public class WeatherApp extends Application {
     WeatherAppComponent component;
 
     Presenter presenter;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -39,7 +40,6 @@ public class WeatherApp extends Application {
 //                .contextModule(new ContextModule(getApplicationContext()))
 //                .sharedPreferencesModule(new SharedPreferencesModule())
 //                .build();
-
 //        sharedPreferencesComponent.provideSharedPreferences();
 
         picasso = component.getPicasso();
@@ -57,6 +57,7 @@ public class WeatherApp extends Application {
     public Picasso getPicasso() {
         return picasso;
     }
+
     public Presenter getPresenter() {
         return presenter;
     }

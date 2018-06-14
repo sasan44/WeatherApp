@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="temp">Temp : </string>
+    <string name="tempMin">tempMin : </string>
+    <string name="tempMax">tempMax : </string>
+    <string name="pressure">pressure : </string>
+    <string name="clouds">clouds : </string>
+    <string name="windspeed">windspeed : </string>
+    <string name="winddeg">winddeg : </string>
+    <string name="dtTxt">dtTxt : </string>
+    <string name="humidity">humidity : </string>
+    <string name="weather">weather : </string>
 </resources>

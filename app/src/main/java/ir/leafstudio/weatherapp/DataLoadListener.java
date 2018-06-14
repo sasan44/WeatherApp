@@ -1,10 +1,9 @@
-package ir.leafstudio.weatherapp.retrofit;
+package ir.leafstudio.weatherapp;
 
-import ir.leafstudio.weatherapp.SavedCity;
 import ir.leafstudio.weatherapp.openweathermodel.Forecast;
 import ir.leafstudio.weatherapp.openweathermodel.OpenWeather;
 
-public interface ServerLoadListener {
+public interface DataLoadListener {
 
     void onCurrentWeatherLoaded(OpenWeather openWeather , SavedCity city);
     void onFiveDayForecastLoaded(Forecast forecast , SavedCity city);
@@ -12,4 +11,3 @@ public interface ServerLoadListener {
     void onFiveDayForecastLoadFailed();
     void loadingFromServer();
 }
-

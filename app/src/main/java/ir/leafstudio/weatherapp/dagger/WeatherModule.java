@@ -8,6 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 import ir.leafstudio.weatherapp.MySharedPreferences;
 import ir.leafstudio.weatherapp.Presenter;
+import ir.leafstudio.weatherapp.SavedSettings;
 import ir.leafstudio.weatherapp.Screens.MainActivityScope;
 import ir.leafstudio.weatherapp.retrofit.ApiService;
 import okhttp3.OkHttpClient;
@@ -48,8 +49,8 @@ public class WeatherModule {
 
     @Provides
     @WeatherApplicationScope
-    Presenter getPresenter(ApiService apiService , MySharedPreferences mySharedPreferences) {
-        return new Presenter(apiService , mySharedPreferences);
+    Presenter getPresenter(ApiService apiService , SavedSettings savedSettings) {
+        return new Presenter(apiService , savedSettings);
     }
 
 }

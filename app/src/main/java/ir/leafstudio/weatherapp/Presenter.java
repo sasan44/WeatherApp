@@ -10,19 +10,20 @@ import ir.leafstudio.weatherapp.retrofit.CallServer;
 import ir.leafstudio.weatherapp.retrofit.ServerLoadListener;
 import timber.log.Timber;
 
-public class Presenter implements ServerLoadListener {
+public class Presenter implements ServerLoadListener, Settings { //DataLoadListener
     UIListener uiListener;
 
     ApiService apiService;
     private SavedSettings savedSettings;
 
-    public Presenter(ApiService apiService, MySharedPreferences sharedPreferences) {
+    public Presenter(ApiService apiService, SavedSettings savedSettings) {
         this.apiService = apiService;
-        setSavedSettings(new SavedSettings(sharedPreferences));
-        Timber.d("Presenter " + sharedPreferences.getDataList());
+        this.savedSettings = savedSettings;
+        Timber.d("Presenter " + savedSettings.getListOfcities());
 
     }
 
+    //ServerLoadListener
     @Override
     public void onCurrentWeatherLoaded(OpenWeather openWeather, SavedCity city) {
         Timber.d("onCurrentWeatherLoaded : " + openWeather + " , City :" + city);
@@ -54,16 +55,12 @@ public class Presenter implements ServerLoadListener {
         this.uiListener = listener;
     }
 
-    public List<SavedCity> getSavedCityList() {
-        return getSavedSettings().getListOfcities();
-    }
-
-    public void load() {
+    public void loadFreshData() {
         for (SavedCity city : getSavedCityList()) {
             CallServer callServer = new CallServer(this, apiService, city);
             callServer.setListener(this);
         }
-        uiListener.savedCityUpdated();
+        uiListener.listOfcitiesUpdated();
 
     }
 
@@ -75,22 +72,34 @@ public class Presenter implements ServerLoadListener {
         this.savedSettings = savedSettings;
     }
 
+    //Settings
+    @Override
+    public List<SavedCity> getSavedCityList() {
+        return getSavedSettings().getListOfcities();
+    }
+
+    @Override
     public void listOfcitiesUpdated() {
         uiListener.listOfcitiesUpdated();
-        load();
+        loadFreshData();
     }
 
+    @Override
     public void deleteFromListofCities(SavedCity savedCity) {
         savedSettings.removeCity(savedCity);
+        listOfcitiesUpdated();
     }
 
+    @Override
     public void addToListofCities(SavedCity savedCity) {
         savedSettings.addCity(savedCity);
+        listOfcitiesUpdated();
 
     }
 
+    @Override
     public void deleteFromListofCities(int savedCity) {
         savedSettings.removeCity(savedCity);
-        uiListener.listOfcitiesUpdated();
+        listOfcitiesUpdated();
     }
 }

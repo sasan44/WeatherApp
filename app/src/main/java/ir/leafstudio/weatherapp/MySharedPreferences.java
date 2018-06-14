@@ -52,10 +52,4 @@ public class MySharedPreferences {
         return gson.fromJson(json, collectionType); //Collection<SavedCity> enums =
     }
 
-//    public SavedCity getData() {
-//        String json = mSharedPreferences.getString("SavedCity", "");
-//        SavedCity obj = gson.fromJson(json, SavedCity.class);
-//        return obj;
-//    }
-
 }
