@@ -41,7 +41,7 @@ public class OpenWeather {
     private Rain rain;
     @SerializedName("dt")
     @Expose
-    private double dt;
+    private long dt;
     @SerializedName("sys")
     @Expose
     private Sys sys;
@@ -112,11 +112,11 @@ public class OpenWeather {
         this.rain = rain;
     }
 
-    public double getDt() {
+    public long getDt() {
         return dt;
     }
 
-    public void setDt(double dt) {
+    public void setDt(long dt) {
         this.dt = dt;
     }
 

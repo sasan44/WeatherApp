@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import butterknife.Unbinder;
 import ir.leafstudio.weatherapp.R;
 import ir.leafstudio.weatherapp.SavedCity;
@@ -27,7 +30,6 @@ public class TodayFragment extends Fragment implements fragmentUpdater {
     RecyclerView.LayoutManager mLayoutManager;
     static String SavedCity_KEY = "SavedCity";
     private SavedCity savedCity;
-
 
 
     OpenWeather openWeather;
@@ -113,16 +115,22 @@ public class TodayFragment extends Fragment implements fragmentUpdater {
         binding.todayViewId.todayTextViewClouds.setText("Clouds:" + openWeather.getClouds().getAll().toString());
         binding.todayViewId.todayTextViewHumidity.setText("Humidity:" + openWeather.getMain().getHumidity().toString());
         binding.todayViewId.todayTextViewPressure.setText("Pressure:" + openWeather.getMain().getPressure().toString());
-        binding.todayViewId.todayTextViewMaxTemp.setText("MaxTemp:" + openWeather.getMain().getTempMax().toString());
-        binding.todayViewId.todayTextViewTemp.setText("Temp:" + openWeather.getMain().getTemp().toString());
-        binding.todayViewId.todayTextViewMinTemp.setText("MinTemp:" + openWeather.getMain().getTempMin().toString());
+        binding.todayViewId.todayTextViewMaxTemp.setText("MaxTemp:" + kelvinToCelsius(openWeather.getMain().getTempMax()));
+        binding.todayViewId.todayTextViewTemp.setText("Temp:" + kelvinToCelsius(openWeather.getMain().getTemp()));
+        binding.todayViewId.todayTextViewMinTemp.setText("MinTemp:" + kelvinToCelsius(openWeather.getMain().getTempMin()));
 
         binding.todayViewId.todayTextViewCountry.setText(openWeather.getSys().getCountry());
-        binding.todayViewId.todayTextViewSunrise.setText(openWeather.getSys().getSunrise().toString());
-        binding.todayViewId.todayTextViewSunset.setText(openWeather.getSys().getSunset().toString());
-        binding.todayViewId.todayTextViewDt.setText("" + openWeather.getDt());
+        Date sunrise = new Date(openWeather.getSys().getSunrise() * 1000);
+        Date sunset = new Date(openWeather.getSys().getSunset() * 1000);
+        binding.todayViewId.todayTextViewSunrise.setText("sunrise:" + DateFormat.getTimeInstance().format(sunrise));
+        binding.todayViewId.todayTextViewSunset.setText("sunset:" + DateFormat.getTimeInstance().format(sunset));
 
-        //binding.todayViewId.todayTextViewWindDeg.setText("WindDeg:" + openWeather.getWind().getDeg().toString());
+        Date dt = new Date(openWeather.getDt() * 1000);
+
+        binding.todayViewId.todayTextViewDt.setText(DateFormat.getDateTimeInstance(
+                DateFormat.MEDIUM, DateFormat.SHORT).format(dt));
+
+        binding.todayViewId.todayTextViewWindDeg.setText("Wind direction:" + openWeather.getWind().getDeg().toString());
         binding.todayViewId.todayTextViewWindSpeed.setText("WindSpeed:" + openWeather.getWind().getSpeed().toString());
         picasso.get()
                 .load("http://openweathermap.org/img/w/" + openWeather.getWeather().get(0).getIcon() + ".png")//10d.png
@@ -142,5 +150,19 @@ public class TodayFragment extends Fragment implements fragmentUpdater {
         todayAdapter.notifyDataSetChanged();
 
     }
+
+    public String kelvinToCelsius (double degreesKelvin) {
+        double c = degreesKelvin - 273.16;
+        String result = String.format("%.2f", c);
+
+        return result;
+    }
+
+
+
+    public static double fahrenheitToCelsius(double fahrenheit) {
+        return ((5 * (fahrenheit - 32.0)) / 9.0);
+    }
+
 
 }

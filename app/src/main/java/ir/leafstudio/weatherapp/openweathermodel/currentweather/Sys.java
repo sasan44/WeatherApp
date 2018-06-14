@@ -22,10 +22,10 @@ public class Sys {
     private String country;
     @SerializedName("sunrise")
     @Expose
-    private Double sunrise;
+    private long sunrise;
     @SerializedName("sunset")
     @Expose
-    private Double sunset;
+    private long sunset;
 
     public Double getType() {
         return type;
@@ -59,19 +59,19 @@ public class Sys {
         this.country = country;
     }
 
-    public Double getSunrise() {
+    public long getSunrise() {
         return sunrise;
     }
 
-    public void setSunrise(Double sunrise) {
+    public void setSunrise(long sunrise) {
         this.sunrise = sunrise;
     }
 
-    public Double getSunset() {
+    public long getSunset() {
         return sunset;
     }
 
-    public void setSunset(Double sunset) {
+    public void setSunset(long sunset) {
         this.sunset = sunset;
     }
 

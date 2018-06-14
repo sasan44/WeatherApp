@@ -40,6 +40,16 @@
     <color name="black_alpha_80">#318f8b8b</color>
     <color name="black">#000000</color>
     <color name="black_alpha_00">#00000000</color>
+    <color name="black_s">#602B608A</color>
+
+
+
+    <color name="toolbar_startColor">#66000000</color>
+    <color name="toolbar_endColor">#2c626262</color>
+    <color name="tablayoutback">#328f8b8b</color>
+    <color name="main_weather_background">#31aba7a7</color>
+    <color name="cardBackgroundColor">#2effffff</color>
+
 
     <color name="buttonTrasnp">#2c00ffe5</color>
 

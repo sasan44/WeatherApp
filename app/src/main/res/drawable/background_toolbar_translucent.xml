@@ -5,6 +5,6 @@
 
     <gradient
         android:angle="270"
-        android:endColor="@android:color/transparent"
-        android:startColor="@color/black_alpha_40"/>
+        android:endColor="@color/toolbar_endColor"
+        android:startColor="@color/toolbar_startColor"/>
 </shape>

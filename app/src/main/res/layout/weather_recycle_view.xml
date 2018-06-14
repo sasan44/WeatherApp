@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,11 +11,10 @@
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:elevation="-4dp">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -24,92 +24,72 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            card_view:cardBackgroundColor="#602B608A"
+            card_view:cardBackgroundColor="@color/cardBackgroundColor"
             card_view:cardElevation="2dp">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="4dp"
-                tools:layout_editor_absoluteY="4dp">
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp">
 
 
                 <TextView
                     android:id="@+id/textViewWindDeg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@{@string/winddeg  + Double.toString(forecast.wind.deg)}"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewHumidity" />
+                    app:layout_constraintStart_toEndOf="@+id/space2"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMaxTemp" />
 
                 <TextView
                     android:id="@+id/textViewMaxTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@{@string/tempMax  + Double.toString(forecast.main.tempMax)}"
-                    app:layout_constraintStart_toEndOf="@+id/textViewWindSpeed"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewMinTemp" />
+                    app:layout_constraintStart_toEndOf="@+id/space2"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewClouds" />
 
                 <TextView
                     android:id="@+id/textViewWeather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{@string/weather  + forecast.weather.get(0).main +    forecast.weather.get(0).description }"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintStart_toEndOf="@+id/space2"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewHumidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@{@string/humidity  + Double.toString(forecast.main.humidity)}"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewWindSpeed" />
+                    app:layout_constraintStart_toEndOf="@+id/space2"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewWindDeg" />
 
                 <TextView
                     android:id="@+id/textViewPressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@{@string/pressure  + Double.toString(forecast.main.pressure)}"
-                    app:layout_constraintStart_toEndOf="@+id/textViewWindSpeed"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewMaxTemp" />
+                    app:layout_constraintStart_toStartOf="@+id/textViewTemp"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewWindSpeed" />
 
                 <TextView
                     android:id="@+id/textViewClouds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@{@string/clouds  + Double.toString(forecast.clouds.all)}"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewDtTxt" />
+                    app:layout_constraintStart_toEndOf="@+id/space2"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewWeather" />
 
                 <TextView
                     android:id="@+id/textViewWindSpeed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@{@string/windspeed  + Double.toString(forecast.wind.speed)}"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewClouds" />
+                    app:layout_constraintStart_toStartOf="@+id/textViewTemp"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMinTemp" />
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -117,13 +97,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:scaleType="fitXY"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"
                     android:src="@drawable/ic_launcher"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
@@ -132,36 +111,28 @@
                     android:id="@+id/textViewDtTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@{@string/dtTxt  + forecast.dtTxt}"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@{ @string/temp  +  Double.toString(forecast.main.temp) }"
-                    app:layout_constraintStart_toEndOf="@+id/textViewWindSpeed"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDtTxt" />
 
                 <TextView
                     android:id="@+id/textViewMinTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@{@string/tempMin  + Double.toString(forecast.main.tempMin)}"
-                    app:layout_constraintStart_toEndOf="@+id/textViewWindSpeed"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toBottomOf="@+id/textViewTemp" />
 
                 <Space
@@ -169,17 +140,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.057"
-                    app:layout_constraintStart_toEndOf="@+id/textViewHumidity"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewDtTxt"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    card_view:layout_constraintStart_toEndOf="@+id/textViewMinTemp" />
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
 

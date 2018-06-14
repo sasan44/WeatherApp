@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="background_elevation">0dp</dimen>
+    <dimen name="toolbar_elevation">16dp</dimen>
+    <dimen name="main_weather_elevation">16dp</dimen>
+    <dimen name="tablayout_elevation">8dp</dimen>
+    <dimen name="viewpager_elevation">4dp</dimen>
+    <dimen name="recycleview_elevation">20dp</dimen>
+
+    <dimen name="main_weather_margin">16dp</dimen>
+
+    <dimen name="background_margin">2dp</dimen>
+    <dimen name="toolbar_margin">2dp</dimen>
+    <dimen name="tablayout_margin">2dp</dimen>
+    <dimen name="viewpager_margin">2dp</dimen>
+    <dimen name="recycleview_margin">2dp</dimen>
+
+    <dimen name="_paddingmain_weather_elevation">16dp</dimen>
+
+    <dimen name="background_padding">2dp</dimen>
+    <dimen name="recycleview_padding">2dp</dimen>
+    <dimen name="toolbar_padding">2dp</dimen>
+    <dimen name="tablayout_padding">2dp</dimen>
+    <dimen name="viewpager_padding">2dp</dimen>
+
+
+    <dimen name="margin_normal">4dp</dimen>
+
+</resources>
